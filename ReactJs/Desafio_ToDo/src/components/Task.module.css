@@ -1,0 +1,46 @@
+.container{   
+    padding: 20px;
+    color: var(--Gray100);
+    border: 1px solid var(--Gray400);
+    background: var(--Gray500);
+    border-radius: 5px;
+    margin-top: 20px;
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+    text-align: left;
+    align-items: center;
+}
+
+.checkCircle :hover{
+    color: var(--Danger);
+    transition: 0.1s;
+}
+
+.container button{
+    border: 0px solid var(--Gray400);
+    background: var(--Gray500);
+    color: var(--Gray100);
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    line-height: 0;
+}
+
+.container button :hover{
+    color: var(--Danger);
+    transition: 0.1s;
+}
+
+.icon{
+    margin-top: 100px;
+}
+
+.content{
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+}
+

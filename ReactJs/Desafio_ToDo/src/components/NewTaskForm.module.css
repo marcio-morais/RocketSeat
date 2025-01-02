@@ -1,0 +1,67 @@
+.formTask{
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    margin-top: -1.5rem;
+
+}
+
+.formTask input{
+    flex: 1;
+    height: 3.5rem;
+    background: var(--Gray500);
+    color: var(--Gray300);
+    border: 1px solid var(--Gray600);
+    border-radius: 0.5rem;
+    padding: 0 1rem;
+    margin-right: 0.5rem;
+}
+
+.formTask button{
+    height: 3.5rem;
+    background: var(--BlueDark);
+    color: var(--Gray100);
+    border-radius: 0.5rem;
+    padding: 0 1rem;
+    cursor: pointer;
+   
+}
+
+.buttonCreateTask{
+    display: flex;
+    gap: 0.5rem;                
+}
+
+.taskListHeader{
+    display: flex;    
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.5rem;
+}
+
+.numTaskCreated{
+    margin-top: 2.5rem;
+    color: var(--Blue);
+}
+
+.numTaskClosed{
+    margin-top: 2.5rem;
+    color: var(--Purple);
+}
+
+.borderNumTask{
+    background: var(--Gray400);    
+    border-radius: 50px;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    margin-left: 0.5rem; 
+    color: var(--Gray200);       
+}
+
+
+.formTask button:hover{
+    background: var(--Blue);
+    transition: 0.1s;
+}
