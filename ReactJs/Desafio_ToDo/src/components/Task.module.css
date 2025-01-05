@@ -12,12 +12,38 @@
     align-items: center;
 }
 
-.checkCircle :hover{
-    color: var(--Danger);
-    transition: 0.1s;
+.isCompleted{
+    color: var(--PurpleDark);
+    transition: 0.1s;    
 }
 
-.container button{
+.buttonCheckTask{
+    color: var(--Blue);
+    border: 0px solid var(--Gray400);
+    background: var(--Gray500);
+    color: var(--Gray100);
+    border-radius: 5px;
+    cursor: pointer;
+    line-height: 0;
+}
+
+.buttonCheckTask :hover{
+    color: var(--Blue);
+}
+
+.container input
+{
+    border: 10px solid var(--Blue);
+    border-radius: 0px;
+    background: var(--Gray500);
+    color: var(--Gray100);
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    line-height: 0;
+}
+
+.buttonDeleteTask{
     border: 0px solid var(--Gray400);
     background: var(--Gray500);
     color: var(--Gray100);
@@ -27,13 +53,9 @@
     line-height: 0;
 }
 
-.container button :hover{
+.buttonDeleteTask :hover{
     color: var(--Danger);
     transition: 0.1s;
-}
-
-.icon{
-    margin-top: 100px;
 }
 
 .content{

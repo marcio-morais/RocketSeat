@@ -2,17 +2,41 @@ import React from "react";
 import styles from "../components/Task.module.css";
 
 import {CheckCircle , Trash} from "@phosphor-icons/react";
+import { Circle } from "@phosphor-icons/react/dist/ssr";
 
+interface TaskProps {
+  id: string;
+  description: string;
+  isCompleted: boolean;
+  deleteTask: (id: string) => void;
+  completeTask: (id: string) => void;
+}
 
-const Task: React.FC = () => {
+const Task: React.FC<TaskProps> = ({ id, description, isCompleted, deleteTask, completeTask }) => {
+  
+  function handoDeleteTask() {
+    deleteTask(id);
+  }
+
+  function handoCompleteTask() {
+    completeTask(id);
+  }
+
   return (
     <div className={styles.container} >
-        <CheckCircle size={20}/>        
+      <button onClick={handoCompleteTask} className={styles.buttonCheckTask}>
+          {isCompleted? 
+            <CheckCircle size={20} className={styles.isCompleted} weight="fill"  /> : 
+            <Circle size={20} className={styles.isNoCompleted
+            } />
+          }
+        </button>
+      
         <div className={styles.content}>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim suscipit nostrum sequi, est dolorum ab eum non </p>
+            <p>{description}</p>
         </div>
-        <button>
-          <Trash size={20}/>
+        <button onClick={handoDeleteTask} className={styles.buttonDeleteTask}>
+          <Trash size={20} />
         </button>
     </div>
   );
