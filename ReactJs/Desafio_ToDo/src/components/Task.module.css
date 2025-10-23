@@ -1,0 +1,68 @@
+.container{   
+    padding: 20px;
+    color: var(--Gray100);
+    border: 1px solid var(--Gray400);
+    background: var(--Gray500);
+    border-radius: 5px;
+    margin-top: 20px;
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+    text-align: left;
+    align-items: center;
+}
+
+.isCompleted{
+    color: var(--PurpleDark);
+    transition: 0.1s;    
+}
+
+.buttonCheckTask{
+    color: var(--Blue);
+    border: 0px solid var(--Gray400);
+    background: var(--Gray500);
+    color: var(--Gray100);
+    border-radius: 5px;
+    cursor: pointer;
+    line-height: 0;
+}
+
+.buttonCheckTask :hover{
+    color: var(--Blue);
+}
+
+.container input
+{
+    border: 10px solid var(--Blue);
+    border-radius: 0px;
+    background: var(--Gray500);
+    color: var(--Gray100);
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    line-height: 0;
+}
+
+.buttonDeleteTask{
+    border: 0px solid var(--Gray400);
+    background: var(--Gray500);
+    color: var(--Gray100);
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    line-height: 0;
+}
+
+.buttonDeleteTask :hover{
+    color: var(--Danger);
+    transition: 0.1s;
+}
+
+.content{
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+}
+

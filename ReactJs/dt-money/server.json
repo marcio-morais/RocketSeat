@@ -1,0 +1,60 @@
+{
+  "transactions": [
+    {
+      "id": "1",
+      "description": "Transaction 1",
+      "type": "income",
+      "category": "Salary",
+      "price": 1000,
+      "createdAt": "2023-10-01T00:00:00Z"
+    },
+    {
+      "id": "2",
+      "description": "Transaction 2",
+      "type": "outcome",
+      "category": "hamburge",
+      "price": 300,
+      "createdAt": "2023-10-10T00:00:00Z"
+    },
+    {
+      "id": "3",
+      "description": "Transaction 3",
+      "type": "income",
+      "category": "Salary",
+      "price": 1000,
+      "createdAt": "2023-10-15T00:00:00Z"
+    },
+    {
+      "id": "4",
+      "description": "Transaction 3",
+      "type": "income",
+      "category": "Salary",
+      "price": 5000,
+      "createdAt": "2023-10-15T00:00:00Z"
+    },
+    {
+      "id": "c91c",
+      "description": "Presente do Miguel",
+      "price": 2000,
+      "category": "Diversao",
+      "type": "outcome",
+      "createdAt": "2025-04-23T03:42:19.499Z"
+    },
+    {
+      "id": "779b",
+      "description": "sorvete",
+      "price": 15,
+      "category": "comida",
+      "type": "outcome",
+      "createdAt": "2025-04-23T11:58:54.122Z"
+    },
+    {
+      "id": "fc90",
+      "description": "Biscoito",
+      "price": 8,
+      "category": "comida",
+      "type": "outcome",
+      "createdAt": "2025-04-23T12:36:14.071Z"
+    }
+  ]
+}
