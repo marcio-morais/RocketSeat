@@ -24,6 +24,9 @@ npm install react-native-reanimated react-native-safe-area-context expo-status-b
 
 # Install development dependencies (CRITICAL: babel-preset-expo is required)
 npm install --save-dev babel-preset-expo @types/react typescript prettier-plugin-tailwindcss
+
+# Install additional dependencies for advanced components (Added Oct 31, 2025)
+npm install react-hook-form @expo/vector-icons clsx
 ```
 
 ### 3. Create Project Structure
@@ -228,6 +231,40 @@ npx expo start --clear      # Start with cleared cache (if issues)
 - StatusBar configuration at App level
 - Feature-based file organization
 
+### Component Development Patterns
+- **Reusable Components**: Located in `src/components/`
+- **Component Interfaces**: TypeScript interfaces for props validation
+- **Named Exports**: Use named exports for components: `export const AppInput = () => { ... }`
+- **NativeWind Integration**: All components use Tailwind classes via `className` prop
+- **Component Folder Structure**: Each component has its own folder with `index.tsx`
+
+#### Example Component Pattern:
+```tsx
+// src/components/AppInput/index.tsx
+import { colors } from "@/shared/colors";
+import { MaterialIcons } from "@expo/vector-icons";
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
+import { TextInput, TextInputProps, View, Text } from "react-native";
+
+interface AppInputParams<T extends FieldValues> extends TextInputProps {
+  control: Control<T>;
+  name: Path<T>;
+  leftIconName?: keyof typeof MaterialIcons.glyphMap;
+  label?: string;
+}
+
+export const AppInput = <T extends FieldValues>({
+  control,
+  name,
+  leftIconName,
+  label,
+  ...rest
+}: AppInputParams<T>) => {
+  // Advanced input component with react-hook-form integration
+  // Icons, validation, focus states, and custom styling
+};
+```
+
 ## Critical Troubleshooting
 
 ### Common Build Errors & Solutions
@@ -261,10 +298,89 @@ npx expo start --clear      # Start with cleared cache (if issues)
 - React Native new architecture enabled
 - Compatible with Expo SDK 54
 
+## Git & Repository Management
+
+### Repository Status
+- **Clean History**: Repository cleaned from large binary files
+- **Branches**: `main` and `develop` synchronized
+- **Size Optimized**: Removed problematic Android build artifacts
+- **GitHub Ready**: All pushes working correctly
+
+### Development Workflow
+1. **Feature Development**: Work on feature branches
+2. **Component Creation**: Follow established patterns in `src/components/`
+3. **Testing**: Test components on Android/iOS before committing
+4. **Documentation**: Update this file when adding new features
+
+### Commit Conventions
+- `feat:` New features
+- `fix:` Bug fixes
+- `docs:` Documentation updates
+- `refactor:` Code refactoring
+- `style:` Styling updates
+
+## Recent Updates (October 31, 2025)
+
+### New Components Added
+- **AppInput Component**: Advanced input component with form integration
+  - Location: `src/components/AppInput/index.tsx`
+  - Features: React Hook Form integration, Material Icons support, TypeScript generics
+  - Technologies: `react-hook-form`, `@expo/vector-icons`, `clsx` for conditional styling
+  - Usage: Form inputs with validation, icons, and consistent styling
+
+### Enhanced Project Structure
+```bash
+src/
+├── components/
+│   └── AppInput/           # Custom input components
+│       └── index.tsx      # Main input component
+├── screens/
+│   └── Login/             # Login screen implementation  
+├── shared/
+│   └── colors.ts          # Centralized color system
+└── styles/
+    └── global.css         # Global Tailwind styles
+```
+
+### Development Improvements
+- Enhanced component architecture with reusable UI elements
+- Improved TypeScript integration with custom component interfaces
+- Better separation of concerns with component-based structure
+- Consistent styling patterns across components
+
 ## Project Status
 ✅ **Fully Configured & Working**
 - All dependencies installed and configured
 - NativeWind integration working
 - Android build and run successful
 - Login screen visible with proper styling
+- Custom components (AppInput) implemented
 - Development server running correctly
+- Component-based architecture established
+
+## Recent Updates (October 31, 2025)
+
+### Component Architecture Enhanced
+- **Advanced Input Component**: `AppInput` with React Hook Form integration
+- **Form Validation**: Built-in support for form validation and error handling
+- **Icon Integration**: Material Icons support for enhanced UX
+- **Conditional Styling**: Using `clsx` for dynamic className management
+
+### New Dependencies Added (October 31, 2025)
+```bash
+npm install react-hook-form @expo/vector-icons clsx
+```
+
+### Technology Stack Evolution
+- **Forms**: React Hook Form for robust form handling
+- **Icons**: Expo Vector Icons (Material Design icons)
+- **Styling**: Enhanced conditional styling with clsx
+- **TypeScript**: Advanced generic types for component props
+- **Architecture**: Clean component composition patterns
+
+### Next Development Steps
+1. Implement form screens using AppInput component
+2. Add validation schemas and error handling
+3. Create additional reusable UI components
+4. Implement navigation between screens
+5. Add state management for financial data

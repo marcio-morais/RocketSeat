@@ -1,10 +1,19 @@
-import { Text, View } from "react-native";
+
+import { DismissKeyboardView } from "@/components/DissmissKeyboardView";
+import { PublicStackParamsList } from "@/routes/PublicRoutes";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { View } from "react-native";
+import { LoginForm } from "./LoginForm";
 
 export const Login = () => {
+  const navigation = useNavigation<StackNavigationProp<PublicStackParamsList>>();
+
   return (
-    <View className="flex-1 bg-background-primary justify-center items-center">
-      <Text className="text-white text-2xl font-bold">Login Screen</Text>
-      <Text className="text-gray-500 text-base mt-4">DT Money App</Text>
-    </View>
+    <DismissKeyboardView >
+      <View className="flex-1 w-[82%] self-center">
+        <LoginForm />
+      </View>
+    </DismissKeyboardView>
   );
 };
