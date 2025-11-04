@@ -1,6 +1,7 @@
+import { AppButton } from "@/components/AppButton";
 import { AppInput } from "@/components/AppImput";
 import { useForm } from "react-hook-form";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 
 export interface FormLoginParms {
   email: string;
@@ -19,14 +20,35 @@ export const LoginForm = () => {
   };
 
   return (
-    <View>
+    <View className="mt-10 w-full gap-4">
       <AppInput
         control={control}
         name="email"
-        label="Email"
+        lable="Email"
         placeholder="miguel@gestoque.com.br"
-        leftIconName="email"
       />
+
+      <AppInput
+        control={control}
+        name="password"
+        lable="Senha"
+        placeholder="********"
+        leftIconName="lock-outline"
+        secureTextEntry
+      />
+
+      <View className="flex-1 justify-between mt-8 mb-6 min-h-full">
+        <AppButton iconName="arrow-forward">Login</AppButton>
+
+        <View className="mt-6 items-start gap-4">
+          <Text className="text-sm text-center text-gray-500">
+            Don't have an account?
+          </Text>
+          <AppButton mode="outline" iconName="arrow-forward">
+            Register
+          </AppButton>
+        </View>
+      </View>
     </View>
   );
 };

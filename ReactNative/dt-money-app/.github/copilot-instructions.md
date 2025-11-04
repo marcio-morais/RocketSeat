@@ -153,14 +153,24 @@ Create `nativewind-env.d.ts`:
 ### 10. Create Login Screen Component
 Create `src/screens/Login/index.tsx`:
 ```tsx
-import { Text, View } from "react-native";
+import { DismissKeyboardView } from "@/components/DissmissKeyboardView";
+import { PublicStackParamsList } from "@/routes/PublicRoutes";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { View } from "react-native";
+import { LoginForm } from "./LoginForm";
+import { AuthHeader } from "@/components/AuthHeader";
 
 export const Login = () => {
+  const navigation = useNavigation<StackNavigationProp<PublicStackParamsList>>();
+
   return (
-    <View className="flex-1 bg-background-primary justify-center items-center">
-      <Text className="text-white text-2xl font-bold">Login Screen</Text>
-      <Text className="text-gray-500 text-base mt-4">DT Money App</Text>
-    </View>
+    <DismissKeyboardView >
+      <View className="flex-1 w-[82%] self-center">
+        <AuthHeader />
+        <LoginForm />
+      </View>
+    </DismissKeyboardView>
   );
 };
 ```
@@ -319,6 +329,15 @@ export const AppInput = <T extends FieldValues>({
 - `refactor:` Code refactoring
 - `style:` Styling updates
 
+## Documentation
+
+### Project README
+- **Location**: `README.md` (project root)
+- **Content**: Comprehensive project overview, installation guide, architecture explanation
+- **Includes**: Technology stack, component structure, contribution guidelines
+- **Audience**: Developers, contributors, and stakeholders
+- **Maintenance**: Updated with each major feature release
+
 ## Recent Updates (October 31, 2025)
 
 ### New Components Added
@@ -328,14 +347,32 @@ export const AppInput = <T extends FieldValues>({
   - Technologies: `react-hook-form`, `@expo/vector-icons`, `clsx` for conditional styling
   - Usage: Form inputs with validation, icons, and consistent styling
 
+- **AuthHeader Component**: Authentication screens header with branding
+  - Location: `src/components/AuthHeader/index.tsx`
+  - Features: Logo display, consistent branding across auth flows
+  - Usage: Login and Register screens header
+
+- **DismissKeyboardView Component**: Utility wrapper for dismissing keyboard
+  - Location: `src/components/DismissKeyboardView/index.tsx`
+  - Features: TouchableWithoutFeedback wrapper, automatic keyboard dismissal
+  - Usage: Wrap screens to improve UX with form inputs
+
 ### Enhanced Project Structure
 ```bash
 src/
 ├── components/
-│   └── AppInput/           # Custom input components
-│       └── index.tsx      # Main input component
+│   ├── AppInput/           # Advanced input with form integration
+│   ├── AuthHeader/         # Authentication header component
+│   └── DismissKeyboardView/ # Keyboard dismissal utility
+├── routes/
+│   ├── PublicRoutes/       # Public navigation (Login, Register)
+│   ├── PrivateRoutes/      # Private navigation (Home, etc)
+│   └── index.tsx          # Main routing logic
 ├── screens/
-│   └── Login/             # Login screen implementation  
+│   ├── Login/             # Login screen with form
+│   │   └── LoginForm/     # Dedicated login form component
+│   ├── Register/          # User registration screen
+│   └── Home/              # Main dashboard screen
 ├── shared/
 │   └── colors.ts          # Centralized color system
 └── styles/
@@ -358,29 +395,39 @@ src/
 - Development server running correctly
 - Component-based architecture established
 
-## Recent Updates (October 31, 2025)
+## Recent Updates (November 2025)
 
 ### Component Architecture Enhanced
 - **Advanced Input Component**: `AppInput` with React Hook Form integration
-- **Form Validation**: Built-in support for form validation and error handling
-- **Icon Integration**: Material Icons support for enhanced UX
-- **Conditional Styling**: Using `clsx` for dynamic className management
+- **Authentication Header**: `AuthHeader` with consistent branding
+- **Keyboard Management**: `DismissKeyboardView` for better UX
+- **Navigation System**: Complete routing with Public/Private routes
+- **Form Components**: Dedicated `LoginForm` component with validation
 
-### New Dependencies Added (October 31, 2025)
+### New Dependencies Added (November 2025)
 ```bash
 npm install react-hook-form @expo/vector-icons clsx
+npm install @react-navigation/native @react-navigation/stack
 ```
 
 ### Technology Stack Evolution
+- **Navigation**: React Navigation v6 with TypeScript
 - **Forms**: React Hook Form for robust form handling
 - **Icons**: Expo Vector Icons (Material Design icons)
 - **Styling**: Enhanced conditional styling with clsx
 - **TypeScript**: Advanced generic types for component props
 - **Architecture**: Clean component composition patterns
 
+### Current Implementation Status
+1. ✅ Complete navigation system (Public/Private routes)
+2. ✅ Advanced form components with validation
+3. ✅ Authentication flow structure
+4. ✅ Reusable UI component library
+5. ✅ TypeScript integration throughout
+
 ### Next Development Steps
-1. Implement form screens using AppInput component
-2. Add validation schemas and error handling
-3. Create additional reusable UI components
-4. Implement navigation between screens
-5. Add state management for financial data
+1. Implement authentication logic and state management
+2. Create transaction management screens
+3. Add dashboard with financial summaries
+4. Implement data persistence
+5. Add charts and analytics features
