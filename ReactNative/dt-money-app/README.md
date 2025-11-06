@@ -35,6 +35,10 @@ O **DT Money App** é uma aplicação financeira moderna para controle de gastos
 - **CLSX** - Utilitário para classes condicionais
 - **NativeWind** - Sistema de design baseado em Tailwind
 
+### Validação & Formulários
+- **@hookform/resolvers** - Resolvers para React Hook Form
+- **YUP** - Schema de validação para formulários
+
 ### Desenvolvimento
 - **Babel** - Transpilador JavaScript
 - **Metro** - Bundler React Native
@@ -124,9 +128,11 @@ const colors = {
 ```
 
 ### Componentes Principais
-- **AppInput**: Input customizado com validação e ícones
+- **AppInput**: Input customizado com validação React Hook Form e ícones
 - **AuthHeader**: Cabeçalho para telas de autenticação
 - **DismissKeyboardView**: Container que fecha teclado ao tocar
+- **ErrorMessage**: Componente para exibir erros de validação
+- **AppButton**: Botão padronizado com ícones e variações
 
 ## 📦 Scripts Disponíveis
 
@@ -194,6 +200,28 @@ Este projeto incorpora conceitos avançados de React Native:
 - ✅ **Navegação Estruturada**
 - ✅ **Formulários Avançados**
 - ✅ **Reutilização de Código**
+- ✅ **Validação com YUP Schemas** *(Adicionado Nov 5, 2025)*
+- ✅ **Tratamento de Erros** *(Adicionado Nov 5, 2025)*
+- ✅ **Navegação entre Telas** *(Adicionado Nov 5, 2025)*
+
+## 🆕 Últimas Atualizações (Nov 5, 2025)
+
+### Funcionalidades Implementadas
+- 🔐 **Tela de Registro**: Formulário completo de cadastro de usuário
+- ⚠️ **Validação de Formulários**: Schemas YUP para Login e Register
+- 🔄 **Navegação Melhorada**: Transição suave entre Login ↔ Register
+- 🎯 **Tratamento de Erros**: Componente ErrorMessage integrado
+- 🛠️ **Bug Fixes**: Correção de typos e melhorias na UX
+
+### Arquivos Adicionados
+```
+src/
+├── components/ErrorMessage/        # Novo componente de erro
+├── screens/Login/LoginForm/schema.ts     # Validação do login
+└── screens/Register/RegisterForm/        # Formulário de registro
+    ├── index.tsx
+    └── schema.ts
+```
 
 ## 👨‍💻 Desenvolvedor
 
@@ -211,4 +239,4 @@ Este projeto é desenvolvido para fins educacionais como parte do programa Rocke
 
 **🚀 Desenvolvido com React Native, TypeScript e muito ☕**
 
-*Última atualização: Novembro 2025*
+*Última atualização: 5 de Novembro, 2025*

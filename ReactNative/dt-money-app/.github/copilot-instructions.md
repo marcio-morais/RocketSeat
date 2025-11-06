@@ -408,6 +408,9 @@ src/
 ```bash
 npm install react-hook-form @expo/vector-icons clsx
 npm install @react-navigation/native @react-navigation/stack
+
+# Form validation dependencies (Added November 5, 2025)
+npm install @hookform/resolvers yup
 ```
 
 ### Technology Stack Evolution
@@ -424,10 +427,47 @@ npm install @react-navigation/native @react-navigation/stack
 3. ✅ Authentication flow structure
 4. ✅ Reusable UI component library
 5. ✅ TypeScript integration throughout
+6. ✅ Form validation with YUP schemas (Added Nov 5, 2025)
+7. ✅ Error handling with ErrorMessage component
+8. ✅ Complete Login/Register flow with navigation
+
+### Latest Updates (November 5, 2025)
+
+#### 🔧 **Bug Fixes & Improvements**
+- Fixed AppInput component typo: `lable` → `label`
+- Enhanced form validation with proper error states
+- Improved navigation between authentication screens
+
+#### 🆕 **New Features Implemented**
+- **Form Validation**: YUP schema validation for Login/Register forms
+- **Error Handling**: ErrorMessage component for field validation
+- **Register Screen**: Complete registration flow with form validation
+- **Navigation Enhancement**: Seamless navigation between Login ↔ Register
+- **Schema Validation**: Structured validation schemas for all forms
+
+#### 📁 **New Files Created (Nov 5, 2025)**
+```bash
+src/
+├── components/
+│   └── ErrorMessage/index.tsx           # Error display component
+├── screens/
+│   ├── Login/LoginForm/
+│   │   └── schema.ts                   # Login validation schema
+│   └── Register/
+│       ├── RegisterForm/
+│       │   ├── index.tsx               # Register form component
+│       │   └── schema.ts               # Register validation schema
+│       └── index.tsx                   # Updated Register screen
+```
+
+#### 🔄 **Enhanced Components**
+- **AppInput**: Added error display integration with React Hook Form
+- **LoginForm**: Integrated YUP validation with proper error handling
+- **Register**: Complete implementation with form validation and navigation
 
 ### Next Development Steps
 1. Implement authentication logic and state management
-2. Create transaction management screens
+2. Create transaction management screens  
 3. Add dashboard with financial summaries
 4. Implement data persistence
 5. Add charts and analytics features
