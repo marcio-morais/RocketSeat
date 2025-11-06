@@ -10,18 +10,19 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import { ErrorMessage } from '../ErrorMessage'
 
 interface AppInputParams<T extends FieldValues> extends TextInputProps {
   control: Control<T>
   name: Path<T>
   leftIconName?: keyof typeof MaterialIcons.glyphMap
-  lable?: string
+  label?: string
 }
 
 export const AppInput = <T extends FieldValues>({
   control,
   name,
-  lable,
+  label,
   leftIconName,
   secureTextEntry,
   ...rest
@@ -40,17 +41,17 @@ export const AppInput = <T extends FieldValues>({
     <Controller
       control={control}
       name={name}
-      render={({ field: { onChange, value } }) => {
+      render={({ field: { onChange, value }, fieldState: { error } }) => {
         return (
           <View className="w-full mt-4">
-            {lable && (
+            {label && (
               <Text
                 className={clsx(
                   'mb-2 mt-3 text-base',
                   isFocused ? 'text-accent-brand' : 'text-gray-600',
                 )}
               >
-                {lable}
+                {label}
               </Text>
             )}
 
@@ -87,6 +88,9 @@ export const AppInput = <T extends FieldValues>({
                 </TouchableOpacity>
               )}
             </TouchableOpacity>
+            {error && (
+              <ErrorMessage>{error.message}</ErrorMessage>
+            )}
           </View>
         )
       }}

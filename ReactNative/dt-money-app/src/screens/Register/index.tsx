@@ -1,10 +1,13 @@
-import { Text, View } from "react-native"
+import { DismissKeyboardView } from "@/components/DissmissKeyboardView";
+import { View } from "react-native";
+import { RegisterForm } from "./RegisterForm";
 
 export const Register = () => {
-    return (
-        <View className="flex-1 bg-background-primary justify-center items-center">
-            <Text className="text-white text-2xl font-bold">Register Screen</Text>
-            <Text className="text-gray-500 text-base mt-4">DT Money App</Text>            
-        </View>
-    )
-}
+  return (
+    <DismissKeyboardView>
+      <View className="flex-1 w-[82%] self-center">
+        <RegisterForm/>
+      </View>
+    </DismissKeyboardView>
+  );
+};
