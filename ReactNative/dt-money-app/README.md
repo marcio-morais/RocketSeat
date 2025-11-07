@@ -19,27 +19,32 @@ O **DT Money App** é uma aplicação financeira moderna para controle de gastos
 ## 🛠️ Tecnologias Utilizadas
 
 ### Core Stack
+
 - **React Native** - Framework mobile multiplataforma
 - **Expo SDK 54** - Toolchain e runtime
 - **TypeScript** - Tipagem estática
 - **NativeWind v4** - Tailwind CSS para React Native
 
 ### Navegação & Estado
+
 - **React Navigation v6** - Sistema de navegação
 - **React Hook Form** - Gerenciamento de formulários
 - **Context API** - Gerenciamento de estado global
 
 ### Interface & Componentes
+
 - **Expo Vector Icons** - Biblioteca de ícones Material Design
 - **React Native Reanimated** - Animações fluidas
 - **CLSX** - Utilitário para classes condicionais
 - **NativeWind** - Sistema de design baseado em Tailwind
 
 ### Validação & Formulários
+
 - **@hookform/resolvers** - Resolvers para React Hook Form
 - **YUP** - Schema de validação para formulários
 
 ### Desenvolvimento
+
 - **Babel** - Transpilador JavaScript
 - **Metro** - Bundler React Native
 - **ESLint** - Linting e qualidade de código
@@ -47,7 +52,7 @@ O **DT Money App** é uma aplicação financeira moderna para controle de gastos
 
 ## 🏗️ Arquitetura do Projeto
 
-```
+```text
 dt-money-app/
 ├── 📁 src/
 │   ├── 📁 components/          # Componentes reutilizáveis
@@ -77,6 +82,7 @@ dt-money-app/
 ## 🚀 Instalação e Execução
 
 ### Pré-requisitos
+
 - **Node.js** >= 20.19.4
 - **npm** ou **yarn**
 - **Expo CLI** (opcional, mas recomendado)
@@ -86,34 +92,38 @@ dt-money-app/
 ### Passo a Passo
 
 1. **Clone o repositório**
-```bash
-git clone https://github.com/marcio-morais/RocketSeat.git
-cd RocketSeat/ReactNative/dt-money-app
-```
+
+   ```bash
+   git clone https://github.com/marcio-morais/RocketSeat.git
+   cd RocketSeat/ReactNative/dt-money-app
+   ```
 
 2. **Instale as dependências**
-```bash
-npm install
-```
+
+   ```bash
+   npm install
+   ```
 
 3. **Execute o projeto**
-```bash
-# Iniciar servidor de desenvolvimento
-npm start
 
-# Executar no Android
-npm run android
+   ```bash
+   # Iniciar servidor de desenvolvimento
+   npm start
 
-# Executar no iOS
-npm run ios
+   # Executar no Android
+   npm run android
 
-# Executar no navegador (web)
-npm run web
-```
+   # Executar no iOS
+   npm run ios
+
+   # Executar no navegador (web)
+   npm run web
+   ```
 
 ## 🎨 Design System
 
 ### Paleta de Cores
+
 ```tsx
 // Sistema de cores personalizado
 const colors = {
@@ -128,6 +138,7 @@ const colors = {
 ```
 
 ### Componentes Principais
+
 - **AppInput**: Input customizado com validação React Hook Form e ícones
 - **AuthHeader**: Cabeçalho para telas de autenticação
 - **DismissKeyboardView**: Container que fecha teclado ao tocar
@@ -147,6 +158,7 @@ npm run reset      # Resetar cache do Metro
 ## 🧪 Desenvolvimento
 
 ### Estrutura de Componentes
+
 ```tsx
 // Padrão de componente reutilizável
 interface ComponentProps {
@@ -163,11 +175,13 @@ export const Component = ({ ...props }: ComponentProps) => {
 ```
 
 ### Navegação
+
 - **Rotas Públicas**: Login, Register (usuário não autenticado)
 - **Rotas Privadas**: Home, Profile (usuário autenticado)
 - **Stack Navigation**: Navegação em pilha com React Navigation
 
 ### Formulários
+
 - **React Hook Form**: Validação e controle de estado
 - **Componentes Controlados**: Integração com AppInput
 - **Validação em Tempo Real**: Feedback instantâneo
@@ -177,6 +191,7 @@ export const Component = ({ ...props }: ComponentProps) => {
 Este projeto faz parte do programa **RocketSeat** e está em desenvolvimento ativo. Contribuições são bem-vindas!
 
 ### Como Contribuir
+
 1. Fork o projeto
 2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
 3. Commit suas mudanças (`git commit -m 'feat: adiciona nova feature'`)
@@ -184,6 +199,7 @@ Este projeto faz parte do programa **RocketSeat** e está em desenvolvimento ati
 5. Abra um Pull Request
 
 ### Convenções de Commit
+
 - `feat:` - Nova funcionalidade
 - `fix:` - Correção de bug
 - `docs:` - Mudanças na documentação
@@ -194,6 +210,7 @@ Este projeto faz parte do programa **RocketSeat** e está em desenvolvimento ati
 ## 📚 Recursos de Aprendizado
 
 Este projeto incorpora conceitos avançados de React Native:
+
 - ✅ **Arquitetura Componentizada**
 - ✅ **TypeScript com Generics**
 - ✅ **Sistema de Design Consistente**
@@ -207,6 +224,7 @@ Este projeto incorpora conceitos avançados de React Native:
 ## 🆕 Últimas Atualizações (Nov 5, 2025)
 
 ### Funcionalidades Implementadas
+
 - 🔐 **Tela de Registro**: Formulário completo de cadastro de usuário
 - ⚠️ **Validação de Formulários**: Schemas YUP para Login e Register
 - 🔄 **Navegação Melhorada**: Transição suave entre Login ↔ Register
@@ -214,7 +232,8 @@ Este projeto incorpora conceitos avançados de React Native:
 - 🛠️ **Bug Fixes**: Correção de typos e melhorias na UX
 
 ### Arquivos Adicionados
-```
+
+```text
 src/
 ├── components/ErrorMessage/        # Novo componente de erro
 ├── screens/Login/LoginForm/schema.ts     # Validação do login
@@ -225,7 +244,8 @@ src/
 
 ## 👨‍💻 Desenvolvedor
 
-**Márcio Morais**
+### Márcio Morais
+
 - 💼 Developer @ firstclassHome
 - 🚀 Especialista em C#/.NET/WPF e React Native
 - 📚 Estudante RocketSeat
@@ -237,6 +257,6 @@ Este projeto é desenvolvido para fins educacionais como parte do programa Rocke
 
 ---
 
-**🚀 Desenvolvido com React Native, TypeScript e muito ☕**
+### 🚀 Desenvolvido com React Native, TypeScript e muito ☕
 
-*Última atualização: 5 de Novembro, 2025*
+#### Última atualização: 7 de Novembro, 2025
