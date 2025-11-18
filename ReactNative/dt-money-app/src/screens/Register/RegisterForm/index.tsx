@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { View } from "react-native";
 import { registerFormSchema } from "./schema";
 
-export interface RegisterFormParms {
+export interface FormRegisterParms {
   email: string;
   name: string;
   password: string;
@@ -21,7 +21,7 @@ export const RegisterForm = () => {
     control,
     handleSubmit,
     formState: { isSubmitting, errors },
-  } = useForm<RegisterFormParms>(
+  } = useForm<FormRegisterParms>(
     {
       defaultValues: {
         name: "",
@@ -33,8 +33,9 @@ export const RegisterForm = () => {
     }
   );
 
-  const onSubmit = (data: RegisterFormParms) => {
-    console.log(data);
+  const onSubmit = (data: FormRegisterParms) => {
+    
+    
   };
 
   return (

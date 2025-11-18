@@ -1,17 +1,21 @@
-import { User } from "../entities/User";
-import {
-  UserRepositoryInterface,
-  CreateUserParams,
-} from "../../../../../domain/user/repositoryInterface/user-repository.interface";
 import { Repository } from "typeorm";
-import { DtMoneyDataSource } from "../data-source";
+import {
+  CreateUserParams,
+  UpdateUserParams,
+  UserRepositoryInterface,
+} from "../../../../../domain/user/repositoryInterface/user-repository.interface";
 import { DatabaseError } from "../../../../../shared/errors/database.error";
+import { DtMoneyDataSource } from "../data-source";
+import { User } from "../entities/User";
 
 export class UserTypeormRepository implements UserRepositoryInterface {
   private userRepository: Repository<User>;
 
   constructor() {
     this.userRepository = DtMoneyDataSource.getRepository(User);
+  }
+  updateUser(user: UpdateUserParams): Promise<User> {
+    throw new Error("Method not implemented.");
   }
 
   async createUser(user: CreateUserParams): Promise<User> {

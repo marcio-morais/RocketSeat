@@ -1,5 +1,6 @@
+import { useAuthContext } from '@/context/auth.context';
 import { NavigationContainer } from '@react-navigation/native';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { SystemBars } from 'react-native-edge-to-edge';
 import { PrivateRoutes } from './PrivateRoutes';
 import { PublicRoutes } from './PublicRoutes';
@@ -7,11 +8,15 @@ import { PublicRoutes } from './PublicRoutes';
 
 
 export const NavigationRoutes = () => {
-    const [user, setUser] = useState(null);
+    const { token, user } = useAuthContext();    
 
     const Routes = useCallback(() => {
-        return user ? <PrivateRoutes /> : <PublicRoutes />;
-    }, [user]);
+        if(!user || !token) {
+            return <PublicRoutes />;
+        }else{
+            return <PrivateRoutes />;
+        }
+    }, [user, token]);
 
     return (
         <NavigationContainer>
