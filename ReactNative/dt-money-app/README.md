@@ -8,13 +8,15 @@ O **DT Money App** é uma aplicação financeira moderna para controle de gastos
 
 ## ✨ Funcionalidades
 
-- 🔐 **Autenticação de Usuário**: Login e cadastro seguro
-- 💸 **Controle de Transações**: Adicionar receitas e despesas
-- 📊 **Dashboard**: Visualização de resumo financeiro
-- 🏷️ **Categorização**: Organização por categorias
-- 📈 **Relatórios**: Análise de gastos e tendências
-- 🎨 **Interface Moderna**: Design system com NativeWind
-- 🌙 **Dark Theme**: Interface escura otimizada
+- 🔐 **Sistema de Autenticação**: Login e cadastro com persistência de sessão
+- 📱 **Notificações Inteligentes**: SnackBar com feedback visual para todas as ações
+- 💸 **Controle de Transações**: Adicionar receitas e despesas com validação
+- 📊 **Dashboard Interativo**: Visualização de resumo financeiro em tempo real
+- 🏷️ **Categorização**: Organização por categorias personalizadas
+- 📈 **Relatórios**: Análise de gastos e tendências com gráficos
+- ⚡ **Performance Otimizada**: Loading states e error handling robusto
+- 🎨 **Interface Moderna**: Design system consistente com NativeWind
+- 🌙 **Dark Theme**: Interface escura otimizada para todos os horários
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -27,21 +29,25 @@ O **DT Money App** é uma aplicação financeira moderna para controle de gastos
 
 ### Navegação & Estado
 
-- **React Navigation v6** - Sistema de navegação
-- **React Hook Form** - Gerenciamento de formulários
-- **Context API** - Gerenciamento de estado global
+- **React Navigation v6** - Sistema de navegação dinâmica
+- **React Hook Form** - Gerenciamento avançado de formulários
+- **Context API** - Estado global para autenticação e notificações
+- **AsyncStorage** - Persistência de dados e sessões
 
-### Interface & Componentes
+### Interface & Experiência
 
-- **Expo Vector Icons** - Biblioteca de ícones Material Design
-- **React Native Reanimated** - Animações fluidas
+- **Expo Vector Icons** - Biblioteca completa de ícones Material Design
+- **React Native Reanimated** - Animações fluidas e performáticas
 - **CLSX** - Utilitário para classes condicionais
-- **NativeWind** - Sistema de design baseado em Tailwind
+- **NativeWind** - Sistema de design baseado em Tailwind CSS
+- **SnackBar System** - Notificações visuais com auto-dismiss
 
-### Validação & Formulários
+### Validação & Qualidade
 
 - **@hookform/resolvers** - Resolvers para React Hook Form
-- **YUP** - Schema de validação para formulários
+- **YUP** - Schema de validação robusto para formulários
+- **Axios Interceptors** - Tratamento automático de erros HTTP
+- **AppError Class** - Sistema de erros tipados e estruturados
 
 ### Desenvolvimento
 
@@ -58,18 +64,28 @@ dt-money-app/
 │   ├── 📁 components/          # Componentes reutilizáveis
 │   │   ├── AppInput/          # Input avançado com validação
 │   │   ├── AuthHeader/        # Cabeçalho de autenticação
+│   │   ├── SnackBar/          # Sistema de notificações
+│   │   ├── ErrorMessage/      # Exibição de erros
 │   │   └── DismissKeyboard/   # Utilitário para teclado
+│   ├── 📁 context/            # Gerenciamento de estado global
+│   │   ├── auth.context.tsx   # Autenticação e sessão
+│   │   └── snackbar.context.tsx # Notificações
 │   ├── 📁 routes/             # Sistema de navegação
 │   │   ├── PublicRoutes/      # Rotas públicas (Login, Register)
 │   │   ├── PrivateRoutes/     # Rotas privadas (Home, etc)
 │   │   └── index.tsx          # Roteamento principal
 │   ├── 📁 screens/            # Telas da aplicação
+│   │   ├── Loading/           # Tela de carregamento
 │   │   ├── Login/             # Autenticação
 │   │   │   └── LoginForm/     # Formulário de login
 │   │   ├── Register/          # Cadastro de usuário
 │   │   └── Home/              # Dashboard principal
 │   ├── 📁 shared/             # Recursos compartilhados
-│   │   └── colors.ts          # Sistema de cores
+│   │   ├── api/              # Cliente HTTP configurado
+│   │   ├── helpers/          # AppError e utilitários
+│   │   ├── hooks/            # Hooks customizados
+│   │   ├── services/         # Serviços de API
+│   │   └── colors.ts         # Sistema de cores
 │   └── 📁 styles/             # Estilos globais
 │       └── global.css         # CSS do NativeWind
 ├── 📁 .github/                # Documentação GitHub
@@ -140,10 +156,11 @@ const colors = {
 ### Componentes Principais
 
 - **AppInput**: Input customizado com validação React Hook Form e ícones
-- **AuthHeader**: Cabeçalho para telas de autenticação
+- **AuthHeader**: Cabeçalho padronizado para telas de autenticação
+- **SnackBar**: Sistema completo de notificações com auto-dismiss
 - **DismissKeyboardView**: Container que fecha teclado ao tocar
-- **ErrorMessage**: Componente para exibir erros de validação
-- **AppButton**: Botão padronizado com ícones e variações
+- **ErrorMessage**: Componente dedicado para exibir erros de validação
+- **Loading**: Tela de carregamento com restauração de sessão
 
 ## 📦 Scripts Disponíveis
 
@@ -174,17 +191,31 @@ export const Component = ({ ...props }: ComponentProps) => {
 };
 ```
 
-### Navegação
+### Navegação Inteligente
 
 - **Rotas Públicas**: Login, Register (usuário não autenticado)
 - **Rotas Privadas**: Home, Profile (usuário autenticado)
 - **Stack Navigation**: Navegação em pilha com React Navigation
+- **Auto-redirect**: Redirecionamento automático baseado no estado de autenticação
 
-### Formulários
+### Estado Global
 
-- **React Hook Form**: Validação e controle de estado
-- **Componentes Controlados**: Integração com AppInput
-- **Validação em Tempo Real**: Feedback instantâneo
+- **Context API**: Gerenciamento de autenticação e notificações
+- **AsyncStorage**: Persistência de dados e restauração de sessão
+- **Loading States**: Estados de carregamento para melhor UX
+
+### Sistema de Notificações
+
+- **SnackBar**: Notificações visuais para feedback de ações
+- **Auto-dismiss**: Fechamento automático após 3 segundos
+- **Tipos**: Sucesso, erro e informação com cores distintas
+
+### Formulários Avançados
+
+- **React Hook Form**: Validação e controle de estado otimizado
+- **Componentes Controlados**: Integração perfeita com AppInput
+- **Validação YUP**: Schemas robustos com feedback em tempo real
+- **Error Handling**: Tratamento consistente de erros HTTP e validação
 
 ## 🤝 Contribuição
 
@@ -207,89 +238,44 @@ Este projeto faz parte do programa **RocketSeat** e está em desenvolvimento ati
 - `refactor:` - Refatoração de código
 - `test:` - Adição de testes
 
-## 📚 Recursos de Aprendizado
+## 📚 Recursos e Conceitos Implementados
 
-Este projeto incorpora conceitos avançados de React Native:
+Este projeto incorpora conceitos avançados e modernos de React Native:
 
-- ✅ **Arquitetura Componentizada**
-- ✅ **TypeScript com Generics**
-- ✅ **Sistema de Design Consistente**
-- ✅ **Navegação Estruturada**
-- ✅ **Formulários Avançados**
-- ✅ **Reutilização de Código**
-- ✅ **Validação com YUP Schemas** *(Adicionado Nov 5, 2025)*
-- ✅ **Tratamento de Erros** *(Adicionado Nov 5, 2025)*
-- ✅ **Navegação entre Telas** *(Adicionado Nov 5, 2025)*
+### Arquitetura e Organização
 
-## 🆕 Últimas Atualizações (Nov 22, 2025)
+- ✅ **Arquitetura Componentizada**: Separação clara de responsabilidades
+- ✅ **TypeScript com Generics**: Tipagem avançada e reutilização de código
+- ✅ **Context API**: Gerenciamento de estado global eficiente
+- ✅ **Custom Hooks**: Hooks reutilizáveis para lógica compartilhada
 
-### Funcionalidades Implementadas Recentemente
+### Sistema de Design e UX
 
-- 📱 **Sistema de Notificações**: SnackBar para feedback visual
-- 🔐 **Autenticação Completa**: Login/Logout com Context API
-- ⚠️ **Tratamento de Erros**: Sistema robusto com AppError
-- 📡 **Interceptors HTTP**: Axios com tratamento automático de erros
-- 🔄 **Navegação Dinâmica**: Rotas públicas/privadas baseadas em autenticação
-- 🎯 **Loading Screen**: Tela de carregamento com restore de sessão
-- 🛠️ **Bug Fixes**: Correção de hooks React e melhorias na arquitetura
+- ✅ **Design System Consistente**: Componentes padronizados
+- ✅ **Sistema de Notificações**: Feedback visual imediato
+- ✅ **Loading States**: Estados de carregamento para melhor UX
+- ✅ **Error Boundaries**: Tratamento robusto de erros
 
-### Novos Componentes e Funcionalidades
+### Formulários e Validação
 
-#### 🎯 **Sistema de Notificações (SnackBar)**
+- ✅ **Formulários Avançados**: React Hook Form com validação
+- ✅ **Validação YUP**: Schemas estruturados e reutilizáveis
+- ✅ **Tratamento de Erros**: Sistema consistente de erro e feedback
+- ✅ **Componentes Controlados**: Integração perfeita com formulários
 
-- **Localização**: `src/components/SnackBar/`
-- **Context**: `src/context/snackbar.context.tsx`
-- **Funcionalidades**:
-  - Notificações de sucesso, erro e informação
-  - Auto-dismiss após 3 segundos
-  - Posicionamento responsivo
+### Navegação e Autenticação
 
-#### 🔐 **Sistema de Autenticação Avançado**
+- ✅ **Navegação Estruturada**: Rotas públicas e privadas
+- ✅ **Autenticação Persistente**: Sessões com AsyncStorage
+- ✅ **Auto-restore**: Recuperação automática de sessão
+- ✅ **Interceptors HTTP**: Tratamento automático de requisições
 
-- **Context API**: Gerenciamento global de estado de auth
-- **AsyncStorage**: Persistência de sessão
-- **Auto-restore**: Recuperação automática de sessão
-- **Loading States**: Estados de carregamento durante auth
+### Performance e Qualidade
 
-#### 📡 **Interceptors HTTP**
-
-- **Axios Interceptors**: Tratamento automático de respostas
-- **Classe AppError**: Erros tipados e estruturados  
-- **Fallback Messaging**: Mensagens padrão para erros
-
-### Arquivos Adicionados (Nov 22, 2025)
-
-```text
-src/
-├── components/
-│   └── SnackBar/index.tsx              # Sistema de notificações
-├── context/
-│   └── snackbar.context.tsx            # Context do SnackBar
-├── screens/
-│   └── Loading/index.tsx               # Tela de loading com restore
-├── shared/
-│   ├── helpers/
-│   │   └── AppError.ts                 # Classe de erro customizada
-│   └── hooks/
-│       └── useErrorHandler.tsx         # Hook para tratamento de erros
-├── test-server.js                      # Servidor de testes Node.js
-└── test-server.py                      # Servidor de testes Python
-```
-
-### Melhorias na Arquitetura
-
-- **📱 Context API**: Implementação completa para auth e notificações
-- **🔄 Loading States**: Gerenciamento de estados de carregamento
-- **⚡ Performance**: Otimização de re-renders com useCallback
-- **🎯 Error Boundaries**: Tratamento robusto de erros em toda aplicação
-- **📡 Network Layer**: Interceptors HTTP com fallback automático
-
-### Bug Fixes Críticos
-
-- **✅ Hooks React**: Correção de hooks chamados fora de componentes
-- **✅ Navigation**: Correção de tipos TypeScript para navegação
-- **✅ Memory Leaks**: Limpeza adequada de listeners e timeouts
-- **✅ Error Handling**: Tratamento consistente de erros axios vs AppError
+- ✅ **Reutilização de Código**: Componentes altamente reutilizáveis
+- ✅ **Otimização de Re-renders**: useCallback e useMemo
+- ✅ **Memory Management**: Limpeza adequada de recursos
+- ✅ **Network Layer**: Cliente HTTP configurado com fallbacks
 
 ## 👨‍💻 Desenvolvedor
 
@@ -306,6 +292,4 @@ Este projeto é desenvolvido para fins educacionais como parte do programa Rocke
 
 ---
 
-### 🚀 Desenvolvido com React Native, TypeScript e muito ☕
-
-#### Última atualização: 22 de Novembro, 2025
+🚀 Desenvolvido com React Native, TypeScript e muito ☕
