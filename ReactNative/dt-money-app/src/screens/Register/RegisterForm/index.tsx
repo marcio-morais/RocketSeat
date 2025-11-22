@@ -1,10 +1,13 @@
 import { AppButton } from "@/components/AppButton";
 import { AppInput } from "@/components/AppImput";
+import { useAuthContext } from "@/context/auth.context";
 import { PublicStackParamsList } from "@/routes/PublicRoutes";
-import { yupResolver } from '@hookform/resolvers/yup';
+import { useErrorHandler } from "@/shared/hooks/useErrorHandler";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
-import { View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import { registerFormSchema } from "./schema";
 
 export interface FormRegisterParms {
@@ -15,27 +18,30 @@ export interface FormRegisterParms {
 }
 
 export const RegisterForm = () => {
-  const navigate = useNavigation<NavigationProp<PublicStackParamsList>>();
-
   const {
     control,
     handleSubmit,
     formState: { isSubmitting, errors },
-  } = useForm<FormRegisterParms>(
-    {
-      defaultValues: {
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      },
-      resolver: yupResolver(registerFormSchema),
+  } = useForm<FormRegisterParms>({
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    resolver: yupResolver(registerFormSchema),
+  });
+  const { handleRegister } = useAuthContext();
+  const { handleError } = useErrorHandler();
+  const navigate = useNavigation<NavigationProp<PublicStackParamsList>>();
+  const onSubmit = async (data: FormRegisterParms) => {
+    try {
+      await handleRegister(data);
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        handleError(error, "Unable to register. Please try again later.");
+      }
     }
-  );
-
-  const onSubmit = (data: FormRegisterParms) => {
-    
-    
   };
 
   return (
@@ -72,9 +78,13 @@ export const RegisterForm = () => {
       />
 
       <View className="flex-1 justify-between mt-8 mb-10 min-h-[200px]">
-        <AppButton onPress={handleSubmit(onSubmit)} iconName="arrow-forward">Salvar</AppButton>
+        <AppButton onPress={handleSubmit(onSubmit)} iconName="arrow-forward">
+          {
+            isSubmitting ? <ActivityIndicator color="white" /> : "Register"
+          }
+        </AppButton>
 
-        <View className="items-start gap-4">         
+        <View className="items-start gap-4">
           <AppButton
             onPress={() => navigate.navigate("Login")}
             mode="outline"

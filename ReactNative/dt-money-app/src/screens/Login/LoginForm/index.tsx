@@ -2,11 +2,12 @@ import { AppButton } from "@/components/AppButton";
 import { AppInput } from "@/components/AppImput";
 import { useAuthContext } from "@/context/auth.context";
 import { PublicStackParamsList } from "@/routes/PublicRoutes";
+import { AppError } from "@/shared/helpers/AppError";
+import { useErrorHandler } from "@/shared/hooks/useErrorHandler";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
-import { Text, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 import { loginFormSchema } from "../LoginForm/schema";
 
 export interface FormLoginParms {
@@ -21,22 +22,21 @@ export const LoginForm = () => {
     formState: { isSubmitting, errors },
   } = useForm<FormLoginParms>({
     defaultValues: {
-      email: "",
-      password: "",
+      email: "marcin_bk@yahoo.com.br",
+      password: "Mrcnbk@2985",
     },
     resolver: yupResolver(loginFormSchema),
   });
 
   const { handleAuthenticate } = useAuthContext();
+  const { handleError } = useErrorHandler();
 
   const onSubmit = async (userData: FormLoginParms) => {
-    try {      
+    try {
       await handleAuthenticate(userData);
-
     } catch (error) {
-      if(error instanceof AxiosError) {
-        console.log(error.response?.data);
-        return;
+      if (error instanceof AppError) {
+        handleError(error, "Unable to login. Please check your credentials.");
       }
     }
   };
@@ -64,7 +64,9 @@ export const LoginForm = () => {
 
       <View className="flex-1 justify-between mt-8 mb-6 min-h-[200px]">
         <AppButton onPress={handleSubmit(onSubmit)} iconName="arrow-forward">
-          Login
+          {
+            isSubmitting ? <ActivityIndicator color="white" />  : "Login"
+          }
         </AppButton>
 
         <View className="items-start gap-4">

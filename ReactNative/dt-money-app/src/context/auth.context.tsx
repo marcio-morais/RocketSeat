@@ -1,8 +1,15 @@
 import { FormLoginParms } from "@/screens/Login/LoginForm";
 import { FormRegisterParms } from "@/screens/Register/RegisterForm";
-import { IUser } from "@/shared/interfaces/https/user.interface";
+import { IUser } from "@/shared/interfaces/user-interface";
 import * as authService from "@/shared/services/dt-money/auth.service";
-import { createContext, FC, PropsWithChildren, useContext, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import {
+    createContext,
+    FC,
+    PropsWithChildren,
+    useContext,
+    useState,
+} from "react";
 
 type AuthContextType = {
   user: IUser | null;
@@ -10,52 +17,73 @@ type AuthContextType = {
   handleAuthenticate: (params: FormLoginParms) => Promise<void>;
   handleRegister: (params: FormRegisterParms) => Promise<void>;
   handleLogout: () => void;
+  restoreUserSession: () => Promise<boolean>;
 };
 
 export const AuthContext = createContext<AuthContextType>(
-    {} as AuthContextType
+  {} as AuthContextType
 );
 
 export const AuthContextProvider: FC<PropsWithChildren> = ({ children }) => {
+  const [user, setUser] = useState<IUser | null>(null);
+  const [token, setToken] = useState<string | null>(null);
 
-    const [user, setUser] = useState<IUser | null>(null);
-    const [token, setToken] = useState<string | null>(null);
-
-    const handleAuthenticate = async (UserData: FormLoginParms) => {
-        const { user, token } = await authService.autenticate(UserData);
-        console.log(user, token);
-        setUser(user);
-        setToken(token);
-    };
-
-    const handleRegister = async (params: FormRegisterParms) => {
-        const { user, token } = await authService.autenticate(params);
-        setUser(user);
-        setToken(token);
-    };
-
-    const handleLogout = () => {
-        setUser(null);
-        setToken(null);
-    };
-
-    return (
-        <AuthContext.Provider
-            value={{
-                user,
-                token,
-                handleAuthenticate,
-                handleRegister,
-                handleLogout,
-            }}
-        >
-            {children}
-        </AuthContext.Provider>
+  const handleAuthenticate = async (userData: FormLoginParms) => {
+    const { user, token } = await authService.authenticate(userData);
+    await AsyncStorage.setItem(
+      "@dt-money-user",
+      JSON.stringify({ user, token })
     );
+
+    setUser(user);
+    setToken(token);
+  };
+
+  const handleRegister = async (params: FormRegisterParms) => {
+    const { user, token } = await authService.registerUser(params);
+    await AsyncStorage.setItem(
+      "@dt-money-user",
+      JSON.stringify({ user, token })
+    );
+    setUser(user);
+    setToken(token);
+  };
+
+  const restoreUserSession = async () => {
+    const userData = await AsyncStorage.getItem("@dt-money-user");
+    if (userData) {
+      const { user, token } = JSON.parse(userData);
+      setUser(user);
+      setToken(token);
+    }
+
+    return !!userData;
+  };
+
+  const handleLogout = async () => {
+    await AsyncStorage.removeItem("@dt-money-user");
+    setUser(null);
+    setToken(null);
+  };
+
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        token,
+        handleAuthenticate,
+        handleRegister,
+        handleLogout,
+        restoreUserSession,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export const useAuthContext = () => {
-    const context = useContext(AuthContext);
-    
-    return context;
+  const context = useContext(AuthContext);
+
+  return context;
 };

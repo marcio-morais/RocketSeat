@@ -221,26 +221,75 @@ Este projeto incorpora conceitos avançados de React Native:
 - ✅ **Tratamento de Erros** *(Adicionado Nov 5, 2025)*
 - ✅ **Navegação entre Telas** *(Adicionado Nov 5, 2025)*
 
-## 🆕 Últimas Atualizações (Nov 5, 2025)
+## 🆕 Últimas Atualizações (Nov 22, 2025)
 
-### Funcionalidades Implementadas
+### Funcionalidades Implementadas Recentemente
 
-- 🔐 **Tela de Registro**: Formulário completo de cadastro de usuário
-- ⚠️ **Validação de Formulários**: Schemas YUP para Login e Register
-- 🔄 **Navegação Melhorada**: Transição suave entre Login ↔ Register
-- 🎯 **Tratamento de Erros**: Componente ErrorMessage integrado
-- 🛠️ **Bug Fixes**: Correção de typos e melhorias na UX
+- 📱 **Sistema de Notificações**: SnackBar para feedback visual
+- 🔐 **Autenticação Completa**: Login/Logout com Context API
+- ⚠️ **Tratamento de Erros**: Sistema robusto com AppError
+- 📡 **Interceptors HTTP**: Axios com tratamento automático de erros
+- 🔄 **Navegação Dinâmica**: Rotas públicas/privadas baseadas em autenticação
+- 🎯 **Loading Screen**: Tela de carregamento com restore de sessão
+- 🛠️ **Bug Fixes**: Correção de hooks React e melhorias na arquitetura
 
-### Arquivos Adicionados
+### Novos Componentes e Funcionalidades
+
+#### 🎯 **Sistema de Notificações (SnackBar)**
+
+- **Localização**: `src/components/SnackBar/`
+- **Context**: `src/context/snackbar.context.tsx`
+- **Funcionalidades**:
+  - Notificações de sucesso, erro e informação
+  - Auto-dismiss após 3 segundos
+  - Posicionamento responsivo
+
+#### 🔐 **Sistema de Autenticação Avançado**
+
+- **Context API**: Gerenciamento global de estado de auth
+- **AsyncStorage**: Persistência de sessão
+- **Auto-restore**: Recuperação automática de sessão
+- **Loading States**: Estados de carregamento durante auth
+
+#### 📡 **Interceptors HTTP**
+
+- **Axios Interceptors**: Tratamento automático de respostas
+- **Classe AppError**: Erros tipados e estruturados  
+- **Fallback Messaging**: Mensagens padrão para erros
+
+### Arquivos Adicionados (Nov 22, 2025)
 
 ```text
 src/
-├── components/ErrorMessage/        # Novo componente de erro
-├── screens/Login/LoginForm/schema.ts     # Validação do login
-└── screens/Register/RegisterForm/        # Formulário de registro
-    ├── index.tsx
-    └── schema.ts
+├── components/
+│   └── SnackBar/index.tsx              # Sistema de notificações
+├── context/
+│   └── snackbar.context.tsx            # Context do SnackBar
+├── screens/
+│   └── Loading/index.tsx               # Tela de loading com restore
+├── shared/
+│   ├── helpers/
+│   │   └── AppError.ts                 # Classe de erro customizada
+│   └── hooks/
+│       └── useErrorHandler.tsx         # Hook para tratamento de erros
+├── test-server.js                      # Servidor de testes Node.js
+└── test-server.py                      # Servidor de testes Python
 ```
+
+### Melhorias na Arquitetura
+
+- **📱 Context API**: Implementação completa para auth e notificações
+- **🔄 Loading States**: Gerenciamento de estados de carregamento
+- **⚡ Performance**: Otimização de re-renders com useCallback
+- **🎯 Error Boundaries**: Tratamento robusto de erros em toda aplicação
+- **📡 Network Layer**: Interceptors HTTP com fallback automático
+
+### Bug Fixes Críticos
+
+- **✅ Hooks React**: Correção de hooks chamados fora de componentes
+- **✅ Navigation**: Correção de tipos TypeScript para navegação
+- **✅ Memory Leaks**: Limpeza adequada de listeners e timeouts
+- **✅ Error Handling**: Tratamento consistente de erros axios vs AppError
 
 ## 👨‍💻 Desenvolvedor
 
@@ -259,4 +308,4 @@ Este projeto é desenvolvido para fins educacionais como parte do programa Rocke
 
 ### 🚀 Desenvolvido com React Native, TypeScript e muito ☕
 
-#### Última atualização: 7 de Novembro, 2025
+#### Última atualização: 22 de Novembro, 2025
